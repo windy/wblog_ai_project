@@ -1,13 +1,27 @@
 .my-navbar {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  background-color: #000000 !important;
 
-  a.navbar-brand:hover {
-    color: #aaa;
+  a {
+    color: #ffffff;
+
+    &.navbar-brand {
+      color: #ffffff;
+
+      &:hover {
+        color: #aaa;
+      }
+    }
   }
 
   .nav-link {
     padding-right: 0.75rem !important;
     padding-left: 0.75rem !important;
+    color: #ffffff;
+
+    &:hover {
+      color: #aaa;
+    }
   }
 }
