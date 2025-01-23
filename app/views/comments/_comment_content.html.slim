@@ -6,4 +6,5 @@
         | #{"  • "}
         span.created-at
           | #{format_time(comment.created_at) }
-      = render partial: 'comments/comment_pre', locals: { comment: comment }
+      .comment-content
+        = comment.content_as_html
