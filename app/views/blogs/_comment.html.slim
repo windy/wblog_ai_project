@@ -1,10 +1,22 @@
 turbo-frame#comment-frame
-  .container
+  .container data-controller="comment-image"
     .row.justify-content-center
       .col-12.col-lg-9
         - comment = @comment || Comment.new
         = simple_form_for comment, url: blog_comments_path(post), remote: true do |f|
-          = f.text_area :content, placeholder: t('comment_placeholder.content')
+          = f.text_area :content, placeholder: t('comment_placeholder.content'), data: { "comment-image-target": "textarea" }
+          .comment-images-container.mb-2 data-comment-image-target="previewContainer"
+            .comment-image-limit.text-muted.small
+              i.fas.fa-info-circle
+              span #{t('comment_placeholder.image_limit', count: 3)}
+          
+          .comment-image-upload.mb-3
+            button.btn.btn-sm.btn-outline-secondary.mr-2 type="button" data-action="comment-image#upload"
+              i.fas.fa-image.mr-1
+              | #{t('comment_placeholder.upload_image')}
+              
+            input type="file" style="display:none;" data-comment-image-target="fileInput" accept="image/*" multiple="multiple" data-action="change->comment-image#handleFileSelect"
+            
           .row
             .col-12.col-lg-6
               = f.text_field :name, value: cookies[:name], placeholder: t('comment_placeholder.name')

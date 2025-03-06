@@ -13,3 +13,6 @@ application.register("qrcode", QrcodeController)
 
 import AdminLabelController from "./admin_label_controller"
 application.register("admin-label", AdminLabelController)
+
+import CommentImageController from "./comment_image_controller"
+application.register("comment-image", CommentImageController)

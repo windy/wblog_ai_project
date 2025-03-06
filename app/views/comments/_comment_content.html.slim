@@ -7,3 +7,5 @@
         span.created-at
           | #{format_time(comment.created_at) }
       = render partial: 'comments/comment_pre', locals: { comment: comment }
+      .comment-content.markdown-body data-controller="comment-image"
+        = raw(markdown(comment.content))
