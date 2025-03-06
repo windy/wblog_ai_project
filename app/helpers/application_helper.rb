@@ -57,4 +57,34 @@ module ApplicationHelper
 
     title.sub(q, "<em>#{q}</em>")
   end
+  
+  # Convert markdown content to HTML
+  def markdown(text)
+    return '' if text.blank?
+    
+    renderer = CodeHTML.new(hard_wrap: true, filter_html: true)
+    markdown = Redcarpet::Markdown.new(renderer, 
+      autolink: true,
+      no_intra_emphasis: true,
+      fenced_code_blocks: true,
+      lax_html_blocks: true,
+      strikethrough: true,
+      superscript: true,
+      tables: true
+    )
+    markdown.render(text).html_safe
+  end
+  
+  # Extract image URLs from markdown content
+  def extract_images(text)
+    return [] if text.blank?
+    
+    # Match markdown image syntax: ![alt text](image_url)
+    image_urls = []
+    text.scan(/!\[.*?\]\((.*?)\)/).each do |match|
+      image_urls << match[0]
+    end
+    
+    image_urls
+  end
 end

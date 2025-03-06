@@ -1,0 +1,286 @@
+/* Comment Images Styles */
+
+// 上传容器样式
+.comment-images-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+// 图片限制文本样式
+.comment-image-limit {
+  width: 100%;
+  color: #b3b3b3;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+// 上传按钮样式
+.comment-image-upload {
+  margin-top: 0.5rem;
+
+  .btn-outline-secondary {
+    color: #DDDDDD;
+    border-color: #5E5E5E;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background-color: #444444;
+      border-color: #DDDDDD;
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+
+// 预览容器样式
+.comment-image-preview {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #5E5E5E;
+  background-color: #444444;
+  border-radius: 4px;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  
+  @media (max-width: 576px) {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .comment-image-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #DDDDDD;
+    font-size: 1.5rem;
+  }
+}
+
+// 缩略图样式
+.comment-image-thumbnail {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  object-fit: cover;
+  margin: 0.25rem;
+  display: inline-block;
+  vertical-align: middle;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// 删除按钮样式
+.comment-image-remove {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(220, 53, 69, 0.8);
+  color: white;
+  border: none;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0.8;
+  
+  &:hover {
+    opacity: 1;
+    background-color: #dc3545;
+  }
+}
+
+// 全屏预览模态框样式
+.comment-image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    
+    &.loaded {
+      transform: scale(1);
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(220, 53, 69, 0.8);
+    color: white;
+    border: none;
+    font-size: 0.75rem;
+    cursor: pointer;
+    opacity: 0.8;
+    
+    &:hover {
+      opacity: 1;
+      background-color: #dc3545;
+    }
+  }
+
+  .modal-next,
+  .modal-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .modal-next {
+    right: 20px;
+    border-radius: 30px 0 0 30px;
+  }
+
+  .modal-prev {
+    left: 20px;
+    border-radius: 0 30px 30px 0;
+  }
+
+  .modal-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+  }
+}
+
+// 可访问性改进
+.comment-image-upload button:focus {
+  outline: 2px solid #008cba;
+  outline-offset: 2px;
+}
+
+// 图片加载动画
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.comment-content {
+  img {
+    max-width: 250px !important;
+    max-height: 200px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// 确保 markdown 内容中的图片也具有相同的限制
+.markdown-body {
+  img {
+    max-width: 250px !important;
+    max-height: 200px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// 响应式设计调整
+@media (max-width: 576px) {
+  .comment-content img,
+  .markdown-body img {
+    max-width: 200px !important;
+    max-height: 150px !important;
+    object-fit: contain;
+  }
+  
+  .comment-image-preview {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .comment-image-upload .btn {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
